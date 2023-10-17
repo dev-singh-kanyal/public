@@ -1,0 +1,123 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f0f0f0;
+        margin: 0;
+    }
+
+    .table-of-contents {
+        text-align: center;
+        font-size: 24px;
+        padding: 10px 0;
+        background-color: #007BFF;
+        color: white;
+        width: 50%;
+        margin-bottom: 20px;
+        font-weight: bolder;
+    }
+
+    .class-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 50%;
+    }
+
+    .class-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s;
+    }
+
+    .class-item:first-child {
+        margin-top: 0;
+    }
+
+    .class-item:hover {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .class-item h2 {
+        margin: 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .class-links {
+        display: none;
+        padding: 10px 0;
+    }
+
+    .class-links a {
+        display: block;
+        margin-bottom: 5px;
+        color: #007BFF;
+        text-decoration: none;
+        background-color: #f9f9f9;
+        /* Add background color */
+        padding: 8px;
+        border-radius: 5px;
+    }
+
+    .class-links a:hover {
+        background-color: #e2e2e2;
+        /* Background color on hover */
+    }
+
+    .show-links .class-links {
+        display: block;
+    }
+</style>
+</head>
+
+<body>
+    <div class="table-of-contents">Table of Contents</div>
+    <div class="class-container">
+        <div class="class-item">
+            <h2>Introduction<span>▶</span></h2>
+            <div class="class-links">
+                <a href="./pages/1/00. Classroom.html">Overview</a>
+                <a href="./pages/1/00. Theory.html">Theory</a>
+            </div>
+        </div>
+
+        <div class="class-item">
+            <h2>Mathematics<span>▶</span></h2>
+            <div class="class-links">
+                <a href="./pages/2/00. Classroom.html">Overview</a>
+                <a href="./pages/2/00. Theory.html">Theory</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const classItems = document.querySelectorAll('.class-item');
+
+        classItems.forEach(item => {
+            const header = item.querySelector('h2');
+            const links = item.querySelector('.class-links');
+
+            header.addEventListener('click', () => {
+                if (!item.classList.contains('show-links')) {
+                    classItems.forEach(otherItem => {
+                        otherItem.classList.remove('show-links');
+                        otherItem.querySelector('h2 span').textContent = '▶';
+                    });
+                }
+                item.classList.toggle('show-links');
+                const isOpen = item.classList.contains('show-links');
+                header.querySelector('span').textContent = isOpen ? '▼' : '▶';
+            });
+        });
+    </script>
+</body>
+
+</html>
